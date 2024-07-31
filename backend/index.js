@@ -27,3 +27,14 @@ app.use('/api/auth', authRouter)
 app.listen(PORT, () => {
   console.log(`Server started at port: ${PORT}`);
 });
+
+
+app.use((req,res,next)=>{
+    const statusCode=err.statusCode || 500
+    const message=err.message || 'internal server error';
+    return res.status(statusCode).json({
+        success:false,
+        message,
+        statusCode,
+    })
+}) 
